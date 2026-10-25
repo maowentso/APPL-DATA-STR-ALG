@@ -36,6 +36,4 @@ def findBound(flag: bool) -> int:
         else:
             left = mid + 1
     return find
-print([findBound(True), findBound(False)]) 
-
-
+print([findBound(True), findBound(False)])
