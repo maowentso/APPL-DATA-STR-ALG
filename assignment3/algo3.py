@@ -51,7 +51,7 @@ def quicksort_str(s: str) -> str:
     quicksort(chars, 0, len(chars) - 1)
     return "".join(chars)
 
-def radix_sort_str(s: str) -> str:
+def counting_sort(s: str) -> str:
     if not s:
         return s
     
@@ -81,12 +81,12 @@ print(f"quicksort: {execution_time:.6f}")
 
 start_time = time.perf_counter()
 
-output = group_anagrams(["bucket","rat","mango","tango","ogtan","tar"],radix_sort_str)
+output = group_anagrams(["bucket","rat","mango","tango","ogtan","tar"],counting_sort)
 
 end_time = time.perf_counter()
   
 execution_time = end_time - start_time
-print(f"radix: {execution_time:.6f}")
+print(f"countingsort: {execution_time:.6f}")
 
 strings = ["abcdefg" * 20 for _ in range(10000)]
 
@@ -103,9 +103,9 @@ print(f"quicksort: {execution_time:.6f}")
 
 start_time = time.perf_counter()
 
-output = group_anagrams(strings,radix_sort_str)
+output = group_anagrams(strings,counting_sort)
 
 end_time = time.perf_counter()
 
 execution_time = end_time - start_time
-print(f"radix: {execution_time:.6f}")
+print(f"countingsort: {execution_time:.6f}")
