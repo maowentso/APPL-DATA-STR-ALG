@@ -51,20 +51,23 @@ def quicksort_str(s: str) -> str:
     quicksort(chars, 0, len(chars) - 1)
     return "".join(chars)
 
-def counting_sort(s: str) -> str:
-    if not s:
+def radix_sort(s: str) -> str:
+    if len(s) <= 1:
         return s
-    
-    count = [0] * 256
-    for char in s:
-        count[ord(char)] += 1
-        
-    sorted_chars = []
-    for ascii_val in range(256):
-        if count[ascii_val] > 0:
-            sorted_chars.append(chr(ascii_val) * count[ascii_val])
-            
-    return "".join(sorted_chars)
+
+    codes = [ord(c) for c in s]
+    base = 256
+    max_code = max(codes)
+
+    exp = 1
+    while max_code // exp > 0:
+        buckets = [[] for _ in range(base)]
+        for c in codes:
+            buckets[(c // exp) % base].append(c)
+        codes = [c for bucket in buckets for c in bucket]
+        exp *= base
+
+    return "".join(map(chr, codes))
 
 start_time = time.perf_counter()
 
@@ -81,7 +84,7 @@ print(f"quicksort: {execution_time:.6f}")
 
 start_time = time.perf_counter()
 
-output = group_anagrams(["bucket","rat","mango","tango","ogtan","tar"],counting_sort)
+output = group_anagrams(["bucket","rat","mango","tango","ogtan","tar"],radix_sort)
 
 end_time = time.perf_counter()
   
@@ -103,7 +106,7 @@ print(f"quicksort: {execution_time:.6f}")
 
 start_time = time.perf_counter()
 
-output = group_anagrams(strings,counting_sort)
+output = group_anagrams(strings,radix_sort)
 
 end_time = time.perf_counter()
 
