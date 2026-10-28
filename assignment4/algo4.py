@@ -54,7 +54,7 @@ def components(cities):
                     queue.append(nb)
 
         all_components.append(comp)
-        return all_components
+    return all_components
  
  
 
@@ -87,6 +87,5 @@ print("Cities:", len(cities))
 print("Islands:", count_islands(cities))
 populations = island_populations(cities)
 print("Island populations:", populations)
-print("Total population:", sum(populations))
 a, b = cities[0], cities[1]
 print(f"Highways {a.name} -> {b.name}:", min_highways(a, b))

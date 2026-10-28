@@ -52,7 +52,12 @@ def quicksort_str(s: str) -> str:
     return "".join(chars)
 
 def radix_sort(s: str) -> str:
-    if len(s) <= 1:
+
+    buckets = [[] for _ in range(26)]
+    for c in s:
+        buckets[ord(c) - ord('a')].append(c)
+    return "".join(c for bucket in buckets for c in bucket)
+'''  if len(s) <= 1:
         return s
 
     codes = [ord(c) for c in s]
@@ -67,7 +72,8 @@ def radix_sort(s: str) -> str:
         codes = [c for bucket in buckets for c in bucket]
         exp *= base
 
-    return "".join(map(chr, codes))
+    return "".join(map(chr, codes)) 
+'''
 
 start_time = time.perf_counter()
 
